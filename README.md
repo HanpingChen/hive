@@ -21,7 +21,7 @@
         </property>
         <property>
                 <name>javax.jdo.option.ConnectionPassword</name>
-                <value>chenhanping!741</value>
+                <value>yourpasswd</value>
         </property>
         <property>
                  <name>hive.insert.into.multilevel.dirs</name>
@@ -35,4 +35,15 @@
 ## 安装MySQL
 由于hive远程模式，是使用MySQL作为远程数据库存储数据，所以需要用到MySQL数据库，我们可以在一台用来安装数据库的服务器上，
 安装上MySQL
-在Ubuntu命令行设置
+在Ubuntu命令行输入命令
+```
+apt-get mysql.server,mysql.client
+```
+就会自动安装好MySQL,还会设置好root用户的账户和密码
+要使用MySQL还需要将jdbc的驱动的jar包，拷贝在hive的lib目录下
+
+导入完jar包之后就可以在hive的bin目录下，先初始化，当然只有第一次需要
+```
+./schematool -dbType mysql -initSchema
+```
+完成初始化之后，再执行hive命令，就可以进入hive提示符了。
