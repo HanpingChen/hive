@@ -40,6 +40,27 @@
 apt-get mysql.server,mysql.client
 ```
 就会自动安装好MySQL,还会设置好root用户的账户和密码
+为了让hive的远程模式可以正常运行，我们需要将MySQL的远程登录权限开放
+在安装MySQL的服务器上用root登录
+```
+root@lionschen:~# mysql -uroot -p
+Enter password:
+
+```
+这样进入MySQL命令行之后，授权远程登录
+为了安全，一般我们就只给自己的服务器的ip授权，并且不使用root用户，而且只赋予hive使用的数据库
+我们需要先创建一个数据库用于作为hive的元数据，这里推荐使用Navicat ，使用Navicat来登录可以方便的进行管理。
+尽量可以使用命令行创建一个hive数据库，这里不赘述
+之后创建用户并将hive数据库授权
+```
+grant all privileges on hive.* to username@ipaddress identified by 'passwd';
+```
+这里的表示将hive所有的表的所有权限都赋值给用指定ip登录的用户名为username，并且设置了密码
+之后flush
+```
+flush privileges;
+```
+这样就可以远程登录hive数据库了
 要使用MySQL还需要将jdbc的驱动的jar包，拷贝在hive的lib目录下
 
 导入完jar包之后就可以在hive的bin目录下，先初始化，当然只有第一次需要
