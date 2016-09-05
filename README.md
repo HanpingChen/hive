@@ -31,7 +31,13 @@
 ```
 
 这个配置文件是参照官网上配置数据源的文档，这里是用的MySQL，配置了MySQL的地址和jdbc驱动，登录的用户名和密码等信息
-
+为了更方便的使用hive命令，我们要设置环境变量，编辑/etc/profile
+加入hive的路径
+```
+export HIVE_HOME=/home/hive/apache-hive-2.0.0-bin
+export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$HIVE_HOME/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$HADOOP_HOME/bin:$HIVE_HOME/bin:$PATH
+```
 ## 安装MySQL
 由于hive远程模式，是使用MySQL作为远程数据库存储数据，所以需要用到MySQL数据库，我们可以在一台用来安装数据库的服务器上，
 安装上MySQL
