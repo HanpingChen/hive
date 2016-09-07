@@ -44,7 +44,7 @@ export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$HADOOP_HOME/bin:$HIVE_HOME/bin:$PATH
 安装上MySQL
 在Ubuntu命令行输入命令
 ```
-apt-get mysql.server,mysql.client
+apt-get install mysql.server mysql.client
 ```
 就会自动安装好MySQL,还会设置好root用户的账户和密码
 为了让hive的远程模式可以正常运行，我们需要将MySQL的远程登录权限开放
